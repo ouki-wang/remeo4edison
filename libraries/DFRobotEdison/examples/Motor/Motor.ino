@@ -1,43 +1,51 @@
 /*
- *Copyright (c) 2014, 成都极趣科技有限公司
+ *Copyright (c) 2014, Chengdu Geeker Technology Co., Ltd.
  *All rights reserved
  *
- *文件名称：Motor.ino
- *文件标识：
- *摘    要：控制电机例程  
+ *FileName : Motor.ino
+ *File Tag :
+ *Summary  : moter control example  
  *
- *当前版本：V1.1
- *作    者：邓卫兵(15196617738@163.com)
- *完成时间：2015.1.7
+ *Version  : V1.2
+ *Author   : ouki.wang(ouki.wang@dfrobot.com)
+ *Time     : 2015.10.10
+ 
+ *Version  : V1.1
+ *Author   : weibing.deng(15196617738@163.com)
+ *Time     : 2015.1.7
  *
- *取代版本：V1.0
- *原作者  : 邓卫兵(15196617738@163.com)
- *完成时间：2014.12.22
+ *Version  : V1.0
+ *Author   : weibing.deng(15196617738@163.com)
+ *Time     : 2014.12.22
  */
 #include <DFRobot.h>
 #include <IIC1.h>
-
-DFrobotEdison Motor;
+DFrobotEdison Motor1;
+DFrobotEdison Motor2;
 
 void setup() {
-  Motor.begin(M1); /*初始化电机驱动*/
-
+  Motor1.begin(M1); /*Initialize motor1*/
+  Motor2.begin(M2); /*Initialize motor2*/
 }
 
 void loop() {
-  Motor.move(); /*启动电机*/
-  
+  Motor2.move(); /*motor rotate with the fastest speed*/
+  Motor1.move();
   delay(3000);
-  Motor.setDirection(CLOCKWISE); /*电机顺时针旋转*/
-  Motor.setSpeed(100); /**/
-  
-  delay(3000);
-  Motor.setDirection(ANTICLOCKWISE); /*电机逆时针旋转*/
-  Motor.setSpeed(200); /*调节电机速度*/
-  
+  Motor2.setDirection(CLOCKWISE); /*Motor M2 clockwise rotation*/
+  Motor1.setDirection(CLOCKWISE); /*Motor M1 clockwise rotation*/
+
+  Motor2.setSpeed(100); /*set speed 100(0-255)*/
+  Motor1.setSpeed(100); /*set speed 100(0-255)*/  
   delay(3000);
   
-  Motor.stop(); /*停止电机*/
+  Motor2.setDirection(ANTICLOCKWISE); /*Motor M2 anticlockwise rotation*/
+  Motor2.setSpeed(200); /*set speed 200(0-255)*/
+  Motor1.setDirection(ANTICLOCKWISE); /*Motor M1 anticlockwise rotation*/
+  Motor1.setSpeed(200); /*set speed 300(0-255)*/  
+  delay(3000);
   
+  Motor2.stop(); /*stop moter*/
+  Motor1.stop(); /*stop moter*/  
   delay(3000);
 }

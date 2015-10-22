@@ -1,18 +1,18 @@
 /*
- *Copyright (c) 2014, 成都极趣科技有限公司
+ *Copyright (c) 2014, Chengdu Geeker Technology Co., Ltd.
  *All rights reserved
  *
- *文件名称：WiringAnalog.c
- *文件标识：
- *摘    要： 读取IO口的模拟量和控制电机
+ *File Name : WiringAnalog.c
+ *File Tag  :
+ *Summary   : Read IO analog value and control motor
  *
- *当前版本：V1.1
- *作    者：邓卫兵(15196617738@163.com)
- *完成时间：2015.1.7
+ *Version   : V1.1
+ *Author    : weibing.deng(15196617738@163.com)
+ *Time      : 2015.1.7
  *
- *取代版本：V1.0
- *原作者  : 邓卫兵(15196617738@163.com)
- *完成时间：2014.12.18
+ *Version   : V1.0
+ *Author    : weibing.deng(15196617738@163.com)
+ *Time      : 2014.12.18
  */
 
 #include "DFRobot.h"
@@ -20,7 +20,7 @@
 DFrobotEdison dFrobotEdison = DFrobotEdison();
 
 /*
- *brief: 构造函数
+ *brief: construct function
  *param: @No 
  *retval: @No
  */
@@ -30,9 +30,9 @@ DFrobotEdison::DFrobotEdison()
 }
 
 /*
- *brief: 读取A0-A5端口的模拟量
+ *brief: Read A0-A5 analog value
  *param: @(input) ulPin:A0, A1, A2, A3, A4, A5
- *retval: @读取出来的模拟值
+ *retval: @analog value
  */
 uint32_t DFrobotEdison::readAnalog(uint32_t ulPin)
 {
@@ -97,7 +97,7 @@ uint32_t DFrobotEdison::readAnalog(uint32_t ulPin)
 }
 
 /*
- *brief: 电机初始化
+ *brief: moter initialization
  *param: @(input) numMotor:M1，M2
  *retval: NO
  */
@@ -109,7 +109,7 @@ void DFrobotEdison::begin( const uint32_t Motor)
 }
 
 /*
- *brief: 电机启动
+ *brief: Motor rotate fastest speed
  *param: void
  *retval: NO
  */
@@ -138,7 +138,7 @@ void DFrobotEdison::move(void)
 }
 
 /*
- *brief: 停止电机
+ *brief: stop moter rotation
  *param: void
  *retval: NO
  */
@@ -167,8 +167,8 @@ void DFrobotEdison::stop(void)
 }
 
 /*
- *brief: 控制电机
- *param: @(input) ulValue:电机速度值
+ *brief: set moter speed
+ *param: @(input) whatSpeed:speed value
  *retval: NO
  */
 void DFrobotEdison::setSpeed( const uint32_t whatSpeed )
@@ -196,8 +196,8 @@ void DFrobotEdison::setSpeed( const uint32_t whatSpeed )
 }
 
 /*
- *brief: 控制电机转动方向
- *param: @(input) direction:方向值
+ *brief: set motor direction of rotation
+ *param: @(input) direction:clockwise or anticlockwise
  *retval: NO
  */
  void DFrobotEdison::setDirection(const uint8_t direction)
@@ -223,9 +223,9 @@ void DFrobotEdison::setSpeed( const uint32_t whatSpeed )
 }
 
 /*
- *brief: 写数据去从机
- *param: @(input) cmd:写命令数据
-         @(input) value: 写数据
+ *brief: write data to i2c slave
+ *param: @(input) cmd:write control-cmd value
+         @(input) value: write data
  *retval: NO
  */
  void DFrobotEdison::writeToSlv(uint32_t cmd, uint32_t value )
@@ -241,8 +241,8 @@ void DFrobotEdison::setSpeed( const uint32_t whatSpeed )
 }
 
 /*
- *brief: 读数据去从机
- *param: @(output) outBuf:读出的模拟值
+ *brief: read data from i2c slave
+ *param: @(output) outBuf:if success Analog values returned. otherwise -1 
  *retval: NO
  */
  void DFrobotEdison::readFromSlv(uint32_t *outBuf)
@@ -270,7 +270,6 @@ void DFrobotEdison::setSpeed( const uint32_t whatSpeed )
 		}
 	}
  
-	
 	if((count >= 1000)
 		||(buf[0]!=0x55)
 		||(buf[1]!=0xaa)
